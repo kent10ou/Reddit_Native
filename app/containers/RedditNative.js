@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, StyleSheet } from 'react-native';
+import { 
+  View, 
+  Text, 
+  ListView, 
+  StyleSheet 
+} from 'react-native';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Posts from '../components/posts';
+import { fetchPostsIfNeeded } from '../actions/actionCreators';
 
 class RedditNative extends Component {
   constructor(props) {
     super(props)
-
-  }
-
-  componentDidMount() {
     
   }
-  
-  
 
+  // when component mounts
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchPostsIfNeeded());
+    console.log('STATE WHEN COMP MOUNTS: ', this.props);
+  }
+  
+  handleClick () {
+
+  }
+  
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+      <View>
+
         <Posts />
       </View>
     );
@@ -28,16 +38,18 @@ class RedditNative extends Component {
 }
 
 RedditNative.propTypes = {
-
+  posts: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  dispatch:PropTypes.func.isRequired
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function mapStateToProps(state) {
+  const { isFetching, items: posts } = { isFetching: true, items: [] }
 
-export default RedditNative;
+  return {
+    posts,
+    isFetching
+  }
+}
+
+export default connect(mapStateToProps)(RedditNative);

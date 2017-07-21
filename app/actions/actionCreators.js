@@ -8,6 +8,7 @@ function requestPosts () {
 }
 
 function receivePosts (json) {
+  console.log('receivedPosts! ', json);
   return {
     type: RECEIVE_POSTS,
     posts: json.data.children.map(child => child.data)
@@ -16,17 +17,21 @@ function receivePosts (json) {
 
 // thunk action creator
 function fetchPosts () {
+  console.log("fetchPosts Action Hit!");
   return dispatch => {
     dispatch(requestPosts())
     return fetch(`https://reddit.com/.json`)
       .then(response => response.json())
-      .then(json => dispatch(recievePosts(json)))
+      .then(json => dispatch(receivePosts(json)))
+      .catch(err => console.log(err))
   }
 }
 
 function shouldFetchPosts (state) {
-  const posts = state.posts;
-  if (!posts) {
+  const posts = state.posts.items;
+  console.log('shouldFetchPosts: ', posts);
+  if (posts.length === 0) {
+    console.log('inside if')
     return true;
   } else if (posts.isFetching) {
     return false;
@@ -38,6 +43,7 @@ function shouldFetchPosts (state) {
 export function fetchPostsIfNeeded () {
   return (dispatch, getState) => {
     const state = getState();
+    console.log("STATE FROM ACTION: ", state);
     if ( shouldFetchPosts(state) ) {
       return dispatch(fetchPosts());
     } else {
