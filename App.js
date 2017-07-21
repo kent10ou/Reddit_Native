@@ -3,14 +3,14 @@ import { Provider } from 'react-redux';
 import configureStore from './app/stores/configureStore';
 import RedditNative from './app/containers/RedditNative';
 
-const store = configureStore();
+// const store = configureStore();
 
 class App extends Component {
   render() {
     return (
-      <Provider store = {store}>
+      // <Provider store = {store}>
         <RedditNative />
-      </Provider>
+      // </Provider>
     )
   }
 }

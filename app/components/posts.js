@@ -1,5 +1,5 @@
-import React, { 
-  Component,
+import React, { Component } from 'react';
+import { 
   ListView,
   PropTypes,
   StyleSheet,
@@ -9,9 +9,11 @@ import React, {
 class Posts extends React.Component {
   render() {
     return (
-      <ListView>
+      // <ListView>
         <Text>SHOW SOME STUFF</Text>
-      </ListView>
+      // </ListView>
     )
   }
 } 
+
+export default Posts;
