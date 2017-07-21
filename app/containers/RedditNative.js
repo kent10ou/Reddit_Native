@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, StyleSheet, PropTypes } from 'react-native';
+import { View, Text, Picker, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import Posts from '../components/posts';
 
 class RedditNative extends Component {
