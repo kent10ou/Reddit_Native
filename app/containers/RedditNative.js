@@ -28,10 +28,19 @@ class RedditNative extends Component {
   }
   
   render() {
+    const { posts, isFetching } = this.props
+    console.log('props: ', this.props);
+    console.log('POSTS: ', posts);
+    console.log('ISFETCHING: ', isFetching);
     return (
       <View>
-
-        <Posts />
+        {isFetching && posts.length === 0 && <Text>Loading...</Text> }
+        {/* {!isFetching && posts.length === 0 && <Text>Empty.</Text> }  */}
+        {posts.length > 0 &&
+          <View style={{ opacity: isFetching ? 0.5 : 1 }}>
+            <Posts posts={posts} />
+          </View>
+        }
       </View>
     );
   }
@@ -44,12 +53,15 @@ RedditNative.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { isFetching, items: posts } = { isFetching: true, items: [] }
+  const { isFetching, items: posts } = { isFetching: true}
 
   return {
-    posts,
-    isFetching
+    posts: state.posts.items,
+    isFetching: state.isFetching
   }
 }
+
+// two functions (mapState/DispatchToProps) that are going to take the state (posts/comments) and dispatch (actionCreators) 
+// and will surface those data and funcs via props
 
 export default connect(mapStateToProps)(RedditNative);

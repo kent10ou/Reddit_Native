@@ -31,7 +31,6 @@ function shouldFetchPosts (state) {
   const posts = state.posts.items;
   console.log('shouldFetchPosts: ', posts);
   if (posts.length === 0) {
-    console.log('inside if')
     return true;
   } else if (posts.isFetching) {
     return false;
@@ -43,7 +42,7 @@ function shouldFetchPosts (state) {
 export function fetchPostsIfNeeded () {
   return (dispatch, getState) => {
     const state = getState();
-    console.log("STATE FROM ACTION: ", state);
+    console.log("fetchPostsIfNeeded ", state);
     if ( shouldFetchPosts(state) ) {
       return dispatch(fetchPosts());
     } else {

@@ -9,25 +9,14 @@ import {
 
 class Posts extends React.Component {
   render() {
+  console.log('props in posts component: ', this.props);
     return (
       <View>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Changes you make will automatically reload.</Text>
-      <Text>Shake your phone to open the developer menu.</Text>
-      <FlatList
-          data={[
-            {key: 'Devin'},
-            {key: 'Jackson'},
-            {key: 'James'},
-            {key: 'Joel'},
-            {key: 'John'},
-            {key: 'Jillian'},
-            {key: 'Jimmy'},
-            {key: 'Julie'},
-          ]}
-          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+        <FlatList
+          data={this.props.posts}
+          renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
         />
-        </View>
+      </View>
     )
   }
 } 

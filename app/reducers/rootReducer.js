@@ -13,13 +13,13 @@ function posts (state = {
 }, action) {
   switch (action.type) {
     case REQUEST_POSTS:
-      console.log("REDUCER STATE, REQ_POST: ", state);
+      console.log("REDUCER, REQ_POST: ", state);
       return Object.assign({}, state, {
         isFetching: true
       })
 
     case RECEIVE_POSTS: 
-      console.log("REDUCER STATE, REC_POST: ", state);
+      console.log("REDUCER, REC_POST: ", state);
       return Object.assign({}, state, {
         isFetching: false, 
         items: action.posts

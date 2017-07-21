@@ -15,6 +15,7 @@ const loggerMiddleware = createLogger();
 const enhancers = compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
+
 // Create store with middleware
 function configureStore (initialState) {
   return createStore(
@@ -37,7 +38,7 @@ we update state with actions!
 actions (fired) gets dispatched! -> gets handled by reducers!
 reducers are responsible for updating your state!
 do not put asynchonous stuff in reducers! - reducers should be pure funcs that return immediately
-    - use Redux Thunk or Saga for async calls to api, when data comes back -> export actions
+    - use Redux Thunk for async calls to api, when data comes back -> export actions
 */
 
 
