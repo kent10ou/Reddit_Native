@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Picker, StyleSheet, PropTypes } from 'react-native';
 import Posts from '../components/posts';
 
-class RedditNative extends React.Component {
+class RedditNative extends Component {
+  constructor(props) {
+    super(props)
+
+  }
+
+  componentDidMount() {
+    
+  }
+  
+  
+
   render() {
     return (
       <View style={styles.container}>
@@ -13,6 +24,10 @@ class RedditNative extends React.Component {
       </View>
     );
   }
+}
+
+RedditNative.propTypes = {
+
 }
 
 const styles = StyleSheet.create({
