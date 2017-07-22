@@ -12,14 +12,19 @@ class Posts extends React.Component {
   console.log('props in posts component: ', this.props);
     return (
       <View>
-        <FlatList
+         <FlatList
           data={this.props.posts}
           renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
-        />
+        /> 
+        {/* {this.props.posts.map((post, i) =>
+          <Text key={i}>{post.title}</Text>
+        )} */}
       </View>
     )
   }
 } 
+
+
 
 const styles = StyleSheet.create({
   container: {

@@ -16,18 +16,26 @@ const enhancers = compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-// Create store with middleware
-function configureStore (initialState) {
-  return createStore(
-    rootReducer,
-    initialState,
-    applyMiddleware(thunkMiddleware, loggerMiddleware),
-    enhancers
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+// create an object for default data
+const defaultState = {
+  // posts,
+  // isFetching
 }
 
-export default configureStore;
+// Create store with middleware
+const store = createStore(rootReducer, defaultState, applyMiddleware(thunkMiddleware, loggerMiddleware), enhancers);
+
+// function configureStore (initialState) {
+//   return createStore(
+//     rootReducer,
+//     initialState,
+//     applyMiddleware(thunkMiddleware, loggerMiddleware),
+//     enhancers
+//     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//   );
+// }
+
+export default store;
 
 
 /* REDUX

@@ -5,9 +5,11 @@ import {
   ListView, 
   StyleSheet 
 } from 'react-native';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Posts from '../components/posts';
+import * as actionCreators from '../actions/actionCreators';
 import { fetchPostsIfNeeded } from '../actions/actionCreators';
 
 class RedditNative extends Component {
@@ -18,6 +20,7 @@ class RedditNative extends Component {
 
   // when component mounts
   componentDidMount() {
+    console.log('CDM: ', dispatch);
     const { dispatch } = this.props;
     dispatch(fetchPostsIfNeeded());
     console.log('STATE WHEN COMP MOUNTS: ', this.props);
@@ -29,13 +32,13 @@ class RedditNative extends Component {
   
   render() {
     const { posts, isFetching } = this.props
-    console.log('props: ', this.props);
-    console.log('POSTS: ', posts);
-    console.log('ISFETCHING: ', isFetching);
+    console.log('RN-props: ', this.props);
+    console.log('RN-POSTS: ', posts);
+    console.log('RN-ISFETCHING: ', isFetching);
     return (
       <View>
         {isFetching && posts.length === 0 && <Text>Loading...</Text> }
-        {/* {!isFetching && posts.length === 0 && <Text>Empty.</Text> }  */}
+         {!isFetching && posts.length === 0 && <Text>Empty.</Text> }  
         {posts.length > 0 &&
           <View style={{ opacity: isFetching ? 0.5 : 1 }}>
             <Posts posts={posts} />
@@ -61,6 +64,9 @@ function mapStateToProps(state) {
   }
 }
 
+// function mapDispatchToProps (dispatch) {
+//     return bindActionCreators(actionCreators, dispatch)
+// }
 // two functions (mapState/DispatchToProps) that are going to take the state (posts/comments) and dispatch (actionCreators) 
 // and will surface those data and funcs via props
 
