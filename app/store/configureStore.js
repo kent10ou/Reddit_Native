@@ -1,7 +1,6 @@
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers/rootReducer';
-
 import { createStore, applyMiddleware, compose } from 'redux';
 
 // Log actions
@@ -9,12 +8,17 @@ const loggerMiddleware = createLogger();
 // 
 const devTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
 
+// const defaultState = {
+//   count: 0
+// }
+// const enhancer = compose(applyMiddleware(thunkMiddleware, loggerMiddleware), devTools)
+// const configureStore = createStore(rootReducer, defaultState, enhancer);
+
 // Create store with middleware
 function configureStore(initialState) {
   const enhancer = compose(applyMiddleware(thunkMiddleware, loggerMiddleware), devTools)
   return createStore(rootReducer, initialState, enhancer );
 }
-
 
 export default configureStore;
 

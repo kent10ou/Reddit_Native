@@ -1,5 +1,6 @@
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const ADD_COUNT = 'ADD_COUNT';
 
 function requestPosts () {
   return {
@@ -52,7 +53,9 @@ export function fetchPostsIfNeeded () {
 }
 
 export function addCount() {
-  return { 
-    type: 'ADD_COUNT'
+  console.log('addCount hit');
+  return (dispatch) => { 
+    type: 'ADD_COUNT',
+    count
   }
 }

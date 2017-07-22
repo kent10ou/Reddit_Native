@@ -1,6 +1,5 @@
-import { REQUEST_POSTS, RECEIVE_POSTS } from '../actions/actionCreators';
+import { REQUEST_POSTS, RECEIVE_POSTS, ADD_COUNT } from '../actions/actionCreators';
 
-// set initial state
 const initialState = {
   isFetching: false,
   items: []
@@ -23,10 +22,16 @@ function posts (state = initialState, action) {
         isFetching: false, 
         items: action.posts
       }
-
+    
+    case ADD_COUNT:
+      return {
+        ...state,
+        count: state.count + 1
+      }
+  
     default: 
       console.log("REDUCER STATE, DEFAULT: ", state);
-      return { ...state };
+      return state;
   }
 }
 
