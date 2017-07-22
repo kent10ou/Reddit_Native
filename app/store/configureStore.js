@@ -2,40 +2,21 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers/rootReducer';
 
-import { 
-  createStore, 
-  applyMiddleware,
-  compose
-} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 
 // Log actions
 const loggerMiddleware = createLogger();
-
-// allows redux to know about our store
-const enhancers = compose(
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-);
-
-// create an object for default data
-const defaultState = {
-  // posts,
-  // isFetching
-}
+// 
+const devTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
 
 // Create store with middleware
-const store = createStore(rootReducer, defaultState, applyMiddleware(thunkMiddleware, loggerMiddleware), enhancers);
+function configureStore(initialState) {
+  const enhancer = compose(applyMiddleware(thunkMiddleware, loggerMiddleware), devTools)
+  return createStore(rootReducer, initialState, enhancer );
+}
 
-// function configureStore (initialState) {
-//   return createStore(
-//     rootReducer,
-//     initialState,
-//     applyMiddleware(thunkMiddleware, loggerMiddleware),
-//     enhancers
-//     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-//   );
-// }
 
-export default store;
+export default configureStore;
 
 
 /* REDUX

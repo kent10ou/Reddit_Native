@@ -50,3 +50,9 @@ export function fetchPostsIfNeeded () {
     }
   }
 }
+
+export function addCount() {
+  return { 
+    type: 'ADD_COUNT'
+  }
+}

@@ -1,51 +1,69 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import { 
   View, 
   Text, 
   ListView, 
-  StyleSheet 
+  StyleSheet,
+  TouchableHighlight 
 } from 'react-native';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import Posts from '../components/posts';
+import List from '../components/list';
 import * as actionCreators from '../actions/actionCreators';
-import { fetchPostsIfNeeded } from '../actions/actionCreators';
+import { fetchPostsIfNeeded, addCount } from '../actions/actionCreators';
 
 class RedditNative extends Component {
   constructor(props) {
     super(props)
-    
+    this.state = {
+      isFetching: false,
+      items: [],
+      count: 0 //example
+    }
   }
 
   // when component mounts
   componentDidMount() {
-    console.log('CDM: ', dispatch);
     const { dispatch } = this.props;
-    dispatch(fetchPostsIfNeeded());
+    console.log('CDM: ', dispatch);
+    // dispatch(fetchPostsIfNeeded());
     console.log('STATE WHEN COMP MOUNTS: ', this.props);
   }
   
   handleClick () {
 
   }
+
+  incrementCount () {
+    this.setState({count: this.state.count + 1});
+  }
+
+  addCount () {
+    this.props.addCount();
+  }
   
   render() {
-    const { posts, isFetching } = this.props
+    const { posts, isFetching = false } = this.props
     console.log('RN-props: ', this.props);
     console.log('RN-POSTS: ', posts);
     console.log('RN-ISFETCHING: ', isFetching);
     return (
-      <View>
-        {isFetching && posts.length === 0 && <Text>Loading...</Text> }
+      <View style={{marginTop: 20}}>
+        {/* {isFetching && posts.length === 0 && <Text>Loading...</Text> }
          {!isFetching && posts.length === 0 && <Text>Empty.</Text> }  
         {posts.length > 0 &&
           <View style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Posts posts={posts} />
+             <List posts={posts} /> 
           </View>
-        }
+        } */}
+
+        <Text>Count: {this.state.count}</Text>
+        <TouchableHighlight onPress={() => {this.addCount()}}>
+          <Text>Add!</Text>
+        </TouchableHighlight>
       </View>
-    );
+    )
   }
 }
 
@@ -55,8 +73,9 @@ RedditNative.propTypes = {
   dispatch:PropTypes.func.isRequired
 }
 
+
 function mapStateToProps(state) {
-  const { isFetching, items: posts } = { isFetching: true}
+  // const { isFetching, items: posts } = { isFetching: true}
 
   return {
     posts: state.posts.items,
@@ -64,10 +83,12 @@ function mapStateToProps(state) {
   }
 }
 
-// function mapDispatchToProps (dispatch) {
-//     return bindActionCreators(actionCreators, dispatch)
-// }
+// function used to dispatch actions
+function mapDispatchToProps (dispatch) {
+    return bindActionCreators(actionCreators, dispatch)
+}
+
 // two functions (mapState/DispatchToProps) that are going to take the state (posts/comments) and dispatch (actionCreators) 
 // and will surface those data and funcs via props
 
-export default connect(mapStateToProps)(RedditNative);
+export default connect(mapStateToProps, mapDispatchToProps)(RedditNative);

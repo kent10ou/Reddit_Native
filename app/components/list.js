@@ -7,15 +7,15 @@ import {
   Text
 } from 'react-native';
 
-class Posts extends React.Component {
+class List extends React.Component {
   render() {
-  console.log('props in posts component: ', this.props);
+  console.log('props in List component: ', this.props);
     return (
       <View>
-         <FlatList
+         {/* <FlatList
           data={this.props.posts}
           renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
-        /> 
+        />  */}
         {/* {this.props.posts.map((post, i) =>
           <Text key={i}>{post.title}</Text>
         )} */}
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Posts;
+export default List;
