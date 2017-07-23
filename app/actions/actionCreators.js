@@ -30,7 +30,7 @@ function fetchPosts () {
 
 function shouldFetchPosts (state) {
   const posts = state.posts.items;
-  console.log('shouldFetchPosts: ', posts);
+  // console.log('shouldFetchPosts: ', posts);
   if (posts.length === 0) {
     return true;
   } else if (posts.isFetching) {
@@ -43,7 +43,7 @@ function shouldFetchPosts (state) {
 export function fetchPostsIfNeeded () {
   return (dispatch, getState) => {
     const state = getState();
-    console.log("fetchPostsIfNeeded ", state);
+    // console.log("fetchPostsIfNeeded ", state);
     if ( shouldFetchPosts(state) ) {
       return dispatch(fetchPosts());
     } else {
@@ -53,7 +53,7 @@ export function fetchPostsIfNeeded () {
 }
 
 export function addCount(count) {
-  console.log('addCount hit');
+  // console.log('addCount hit');
   return (dispatch) => { 
     dispatch({
       type: 'ADD_COUNT',

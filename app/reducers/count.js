@@ -12,7 +12,7 @@ function count (state = initialState, action ) {
         }
       ];
     default: 
-      console.log('inside count reducer, default: ', state);
+      // console.log('inside count reducer, default: ', state);
       return {...state}
   }
 }

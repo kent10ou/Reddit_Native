@@ -7,7 +7,6 @@ const store = configureStore();
 
 class App extends Component {
   render() {
-    console.log('STORE: ', store);
     return (
       <Provider store = {store}>
         <RedditNative />

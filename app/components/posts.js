@@ -10,6 +10,8 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+import Thumbnail from './Thumbnail';
+import PostDetail from './PostDetail';
 
 class Posts extends Component {
   
@@ -18,57 +20,56 @@ class Posts extends Component {
   _renderFlatListItem = ({item}) => {
     console.log('ITEM: ', {item});
     return (
-      <View>
-		    <Text key={item.id} style={styles.resultText}>{item.title}</Text>
-        <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
-	    </View>
+        <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {console.log('PRESSED DO SOMETHING')} }>
+          <View style={styles.itemContainer}>
+            <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
+            <View style={styles.textContainer}>
+              <Text key={item.id} style={styles.resultText}>{item.title}</Text>
+            </View>
+          </View>
+        </TouchableHighlight>
     )
   }
 
   render() {
-    console.log('props in List component: ', this.props);
-    console.log("THIS: ", this);
+    // console.log('props in List component: ', this.props);
     return (
-      <View>
-        <FlatList
+      <FlatList
           data={this.props.posts} // looks like this: { posts: [{},{},...]}
           renderItem= {this._renderFlatListItem}
           keyExtractor={this._keyExtractor}> 
-        </FlatList>
-      </View>
+      </FlatList>
     )
   }
 } 
 
-          /* renderItem= {( {item} ) => {this.renderFlatListItem(item)} }  */
-          /* {this.props.posts.map((post, i) =>
-            <Text key={i}>{post.title}</Text>
-          )} */
-
 const styles = StyleSheet.create({
-  container: {
-   flex: 1,
-   paddingTop: 22
+  itemContainer: {
+    flexDirection: 'row',
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
+    padding: 10,
   },
   item: {
     padding: 10,
     fontSize: 18,
     height: 44,
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  textContainer: {
+    flex: 2,
+    margin:10,
+    height: 100,
   },
   resultText: {
-    backgroundColor: '#000',
-    color: '#FFF',
-    height: 20,
+    color: '#000',
   },
   resultImage: {
-    height: 150,
-    width: 140,
+    flex: 1,
+    height: 100,
+    width: 100,
+    margin: 10,
+    borderRadius: 4
   }
 })
 
