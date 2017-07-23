@@ -9,7 +9,7 @@ import {
   StyleSheet,
   TouchableHighlight 
 } from 'react-native';
-import List from '../components/list';
+import Posts from '../components/posts';
 import * as actionCreators from '../actions/actionCreators';
 import { fetchPostsIfNeeded, addCount } from '../actions/actionCreators';
 // import action from '../actions/actionCreators.js'
@@ -30,34 +30,28 @@ class RedditNative extends Component {
   }
   
   render() {
-    // const { posts, isFetching = false } = this.props
+    const { posts, isFetching } = this.props
     console.log('RN-state: ', this.state);
     console.log('RN-props: ', this.props);
     return (
       <View style={{marginTop: 20}}>
-        {/* {isFetching && posts.length === 0 && <Text>Loading...</Text> }
-         {!isFetching && posts.length === 0 && <Text>Empty.</Text> }  
+        {isFetching && posts.length === 0 && <Text>Loading...</Text> }
+        {!isFetching && posts.length === 0 && <Text>Empty.</Text> }
         {posts.length > 0 &&
-          <View style={{ opacity: isFetching ? 0.5 : 1 }}>
-             <List posts={posts} /> 
+          <View>
+            <Posts posts={posts} />
+            <Text>"SHOW ME THE MONEY"</Text>
           </View>
-        } */}
+        }
 
-        <Text>Count: {this.props.count}</Text>
+        {/* <Text>Count: {this.props.count}</Text>
         <TouchableHighlight onPress={() => {this.props.actions.addCount()}}>
           <Text>Add!</Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
       </View>
     )
   }
 }
-
-{/* RedditNative.propTypes = {
-  posts: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  dispatch:PropTypes.func.isRequired
-} */}
-
 
 function mapStateToProps(state) {
   // const { isFetching, items: posts } = { isFetching: true}
@@ -76,6 +70,12 @@ function mapDispatchToProps (dispatch) {
       actions: bindActionCreators(actionCreators, dispatch)
     }
 }
+
+RedditNative.propTypes = {
+  posts: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired
+}
+
 
 // two functions (mapState/DispatchToProps) that are going to take the state (posts/comments) and dispatch (actionCreators) 
 // and will surface those data and funcs via props

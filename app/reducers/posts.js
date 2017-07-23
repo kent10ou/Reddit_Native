@@ -23,14 +23,14 @@ function posts (state = initialState, action) {
         items: action.posts
       }
     
-    case ADD_COUNT:
-      return {
-        ...state,
-        count: state.count + 1
-      }
+    // case ADD_COUNT:
+    //   return {
+    //     ...state,
+    //     count: state.count + 1
+    //   }
   
     default: 
-      console.log("REDUCER STATE, DEFAULT: ", state);
+      console.log("REDUCER, DEFAULT: ", state);
       return state;
   }
 }

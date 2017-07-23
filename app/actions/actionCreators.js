@@ -52,10 +52,12 @@ export function fetchPostsIfNeeded () {
   }
 }
 
-export function addCount() {
+export function addCount(count) {
   console.log('addCount hit');
   return (dispatch) => { 
-    type: 'ADD_COUNT',
-    count
+    dispatch({
+      type: 'ADD_COUNT',
+      count
+    })
   }
 }
