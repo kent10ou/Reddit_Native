@@ -52,7 +52,13 @@ export function fetchPostsIfNeeded () {
   }
 }
 
-
+export function goToPostDetail () {
+  return (dispatch, getState) => {
+    const state = getState();
+    console.log('goToPostDetail Action Hit! :', state);
+    
+  }
+}
 
 export function addCount(count) {
   // console.log('addCount hit');

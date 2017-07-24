@@ -18,6 +18,7 @@ class PostFeed extends Component {
   _goToPostDetails = (state) => {
     // this.props.navigation.navigate('PostDetail', { ...state });
     console.log('THIS.PROPS: ', this.props)
+    return this.props.actions.goToPostDetail();
   };
   
   _keyExtractor = (item, index) => item.id;
@@ -38,7 +39,7 @@ class PostFeed extends Component {
   }
 
   render() {
-    // console.log('props in List component: ', this.props);
+    console.log('props in List component: ', this.props);
     return (
       <FlatList
           data={this.props.posts} // looks like this: { posts: [{},{},...]}

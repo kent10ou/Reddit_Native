@@ -15,9 +15,9 @@ const devTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
 // const configureStore = createStore(rootReducer, defaultState, enhancer);
 
 // Create store with middleware
-function configureStore(initialState) {
+function configureStore(navReducer) {
   const enhancer = compose(applyMiddleware(thunkMiddleware, loggerMiddleware), devTools)
-  return createStore(rootReducer, initialState, enhancer );
+  return createStore(rootReducer(navReducer), undefined, enhancer );
 }
 
 export default configureStore;
@@ -33,6 +33,4 @@ reducers are responsible for updating your state!
 do not put asynchonous stuff in reducers! - reducers should be pure funcs that return immediately
     - use Redux Thunk for async calls to api, when data comes back -> export actions
 */
-
-
 

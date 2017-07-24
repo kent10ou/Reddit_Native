@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
-import nav from './nav';
+// import nav from './nav';
 import posts from './posts';
 
 // Combine Reducers
-const rootReducer = combineReducers({
-  // reducer functions
-  nav,
-  posts
-})
-
-export default rootReducer;
+export default function rootReducer(navReducer) {
+  return combineReducers({
+    // reducer functions
+    nav: navReducer,
+    posts: posts
+  })
+};
 
 /*
 Reducers are updating the state which then passes to the store! This rootReducer.js file is combining the posts reducers

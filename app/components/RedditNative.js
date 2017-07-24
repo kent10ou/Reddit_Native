@@ -27,7 +27,7 @@ class RedditNative extends Component {
   }
   
   render() {
-    const { posts, isFetching, navigation } = this.props
+    const { posts, isFetching, nav, actions } = this.props
     // console.log('RN-state: ', this.state);
     console.log('RN-props: ', this.props);
     return (
@@ -36,7 +36,7 @@ class RedditNative extends Component {
         {!isFetching && posts.length === 0 && <Text>Empty.</Text> }
         {posts.length > 0 &&
           <View>
-            <PostFeed posts={posts} navigation={navigation} />
+            <PostFeed posts={posts} nav={nav} actions={actions} />
             <Text>"SHOW ME THE MONEY"</Text>
           </View>
         }
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state) {
-  // console.log('mapStateToProps - state: ', state)
+  console.log('mapStateToProps - state: ', state)
   return {
     posts: state.posts.items,
     isFetching: state.posts.isFetching,
