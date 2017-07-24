@@ -15,9 +15,11 @@ import PostDetail from './PostDetail';
 
 class PostFeed extends Component {
   
-  _keyExtractor = (item, index) => item.id;
-  
+  _keyExtractor = (item, index) => {
+    return item.id;
+  }
   _goToPostDetails = () => {
+    // need to pass state when dispatching action
     return this.props.actions.goToPostDetail();
   };
   
@@ -27,8 +29,9 @@ class PostFeed extends Component {
 
   _renderFlatListItem = ({item}) => {
     const { posts, isFetching, nav, actions } = this.props
+
     return (
-      <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails()} }>
+      <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(); console.log('item: ', item)} }>
         <View style={styles.itemContainer}>
           <View style={styles.row}>
             <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
@@ -45,7 +48,7 @@ class PostFeed extends Component {
   }
 
   render() {
-    // console.log('props in FlatList: ', this.props);
+    // console.log('this in FlatList: ', this);
     return (
       <FlatList
           data={this.props.posts} // looks like this: { posts: [{},{},...]}

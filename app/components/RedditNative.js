@@ -81,14 +81,3 @@ RedditNative.propTypes = {
 // and will surface those data and funcs via props
 
 export default connect(mapStateToProps, mapDispatchToProps)(RedditNative);
-
-// const AppWithNavigationState = ({ dispatch, nav }) => (
-//   <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
-// );
-
-
-// const mapStateToProps = state => ({
-//   nav: state.nav,
-// });
-
-// export default connect(mapStateToProps)(AppWithNavigationState);

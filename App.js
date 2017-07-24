@@ -17,7 +17,8 @@ const navReducer = (state = initialState, action) => {
   let newState;
   switch(action.type) {
     case 'POST_DETAIL':
-      newState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'PostDetail' }), 
+      console.log('before setting newState: ', state);
+      newState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'PostDetail' }, {posts: state.posts}), 
       state);
       console.log('POST_DETAIL HIT: ', newState);
       break;
