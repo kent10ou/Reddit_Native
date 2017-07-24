@@ -9,7 +9,7 @@ import {
   StyleSheet,
   TouchableHighlight 
 } from 'react-native';
-import Posts from '../components/Posts';
+import PostFeed from '../components/PostFeed';
 import * as actionCreators from '../actions/actionCreators';
 import { fetchPostsIfNeeded, addCount } from '../actions/actionCreators';
 // import action from '../actions/actionCreators.js'
@@ -35,7 +35,7 @@ class RedditNative extends Component {
         {!isFetching && posts.length === 0 && <Text>Empty.</Text> }
         {posts.length > 0 &&
           <View>
-            <Posts posts={posts} />
+            <PostFeed posts={posts} />
             <Text>"SHOW ME THE MONEY"</Text>
           </View>
         }

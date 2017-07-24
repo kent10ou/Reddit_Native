@@ -13,14 +13,20 @@ import {
 import Thumbnail from './Thumbnail';
 import PostDetail from './PostDetail';
 
-class Posts extends Component {
+class PostFeed extends Component {
+  
+  _goToPostDetails = (state) => {
+    // this.props.navigation.navigate('PostDetail', { ...state });
+    console.log('THIS.PROPS: ', this.props)
+  };
   
   _keyExtractor = (item, index) => item.id;
 
   _renderFlatListItem = ({item}) => {
-    console.log('ITEM: ', {item});
+    
+    // console.log('ITEM: ', {item});
     return (
-        <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {console.log('PRESSED DO SOMETHING')} }>
+        <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(); console.log('PRESSED DO SOMETHING');} }>
           <View style={styles.itemContainer}>
             <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
             <View style={styles.textContainer}>
@@ -73,4 +79,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Posts;
+export default PostFeed;

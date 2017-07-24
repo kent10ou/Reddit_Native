@@ -10,16 +10,15 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import React, { Component } from 'react';
-
 class PostDetail extends Component {
   render() {
     return (
       <View>
-        
+        <Text>NOW SHOWING: POST DETAILS SCREEN</Text>
       </View>
     );
   }
 }
+
 
 export default PostDetail;
