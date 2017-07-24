@@ -17,9 +17,7 @@ class PostFeed extends Component {
   
   _keyExtractor = (item, index) => item.id;
   
-  _goToPostDetails = (state) => {
-    console.log('THIS.PROPS: ', this.props)
-    // this.props.nav.navigate('PostDetail', { ...state });
+  _goToPostDetails = () => {
     return this.props.actions.goToPostDetail();
   };
   
@@ -28,8 +26,9 @@ class PostFeed extends Component {
   }
 
   _renderFlatListItem = ({item}) => {
+    const { posts, isFetching, nav, actions } = this.props
     return (
-      <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(); console.log('PRESSED DO SOMETHING');} }>
+      <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails()} }>
         <View style={styles.itemContainer}>
           <View style={styles.row}>
             <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
@@ -46,7 +45,7 @@ class PostFeed extends Component {
   }
 
   render() {
-    console.log('props in List component: ', this.props);
+    // console.log('props in FlatList: ', this.props);
     return (
       <FlatList
           data={this.props.posts} // looks like this: { posts: [{},{},...]}
@@ -88,6 +87,7 @@ const styles = StyleSheet.create({
   },
   resultText: {
     color: '#000',
+    height: 100
   },
   resultImage: {
     flex: 1,

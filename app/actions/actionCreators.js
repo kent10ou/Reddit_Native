@@ -28,7 +28,7 @@ function fetchPosts () {
 
 function shouldFetchPosts (state) {
   const isFetching = state.posts.isFetching;
-  console.log('shouldFetchPosts: ', isFetching)
+  // console.log('shouldFetchPosts: ', isFetching)
   if (!isFetching) {
     return true;
   } else if (isFetching) {
@@ -41,7 +41,7 @@ function shouldFetchPosts (state) {
 export function fetchPostsIfNeeded () {
   return (dispatch, getState) => {
     const state = getState();
-    console.log("fetchPostsIfNeeded ", state);
+    // console.log("fetchPostsIfNeeded ", state);
     if ( shouldFetchPosts(state) ) {
       return dispatch(fetchPosts());
     } else {
@@ -52,7 +52,7 @@ export function fetchPostsIfNeeded () {
 
 // actions to change navigation
 function jumpPage () {
-  console.log('hit JUMPPAGE');
+  // console.log('hit JUMPPAGE');
   return {
     type: POST_DETAIL
   }
@@ -61,7 +61,7 @@ function jumpPage () {
 export function goToPostDetail () {
   return (dispatch, getState) => {
     const state = getState();
-    console.log('goToPostDetail Action Hit! :', state);
+    // console.log('goToPostDetail Action Hit! :', state);
     dispatch(jumpPage());
   }
 }

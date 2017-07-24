@@ -12,6 +12,8 @@ import {
 
 class PostDetail extends Component {
   render() {
+    console.log('inside PostDetail page - props: ', this);
+    // console.log('inside PostDetail page - props: ', state);
     return (
       <View>
         <Text>NOW SHOWING: POST DETAILS SCREEN</Text>

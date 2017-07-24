@@ -8,15 +8,18 @@ import Routes from './app/config/routes';
 
 
 const AppNavigator = StackNavigator(Routes, {});
-
 const initialState = AppNavigator.router.getActionForPathAndParams('RedditNative');
+
+// navigation reducer
 const navReducer = (state = initialState, action) => {
   // const newState = AppNavigator.router.getStateForAction(action, state);
   // console.log('NEW_STATE HIT: ', newState)
   let newState;
   switch(action.type) {
     case 'POST_DETAIL':
-      newState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'PostDetail' }), state);
+      newState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'PostDetail' }), 
+      state);
+      console.log('POST_DETAIL HIT: ', newState);
       break;
     default: 
       newState = AppNavigator.router.getStateForAction(action,state);
@@ -30,7 +33,6 @@ const navReducer = (state = initialState, action) => {
 
 class AppWithNavigationState extends Component {
   render() {
-  // console.log('props from app start: ', this.props);
     return (
       <AppNavigator
         navigation={addNavigationHelpers({
