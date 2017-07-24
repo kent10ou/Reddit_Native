@@ -18,14 +18,12 @@ class PostFeed extends Component {
   _keyExtractor = (item, index) => item.id;
   
   _goToPostDetails = (state) => {
+    console.log('THIS.PROPS: ', this.props)
     // this.props.nav.navigate('PostDetail', { ...state });
-    // console.log('THIS.PROPS: ', this.props)
     return this.props.actions.goToPostDetail();
   };
   
-  _pullToRefresh = (state) => {
-    console.log('PullTORefresh STATE: ', state);
-    console.log('PULL TO REFRESH PROPS: ', this.props);
+  _pullToRefresh = () => {
     this.props.actions.fetchPostsIfNeeded();
   }
 
@@ -33,10 +31,15 @@ class PostFeed extends Component {
     return (
       <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(); console.log('PRESSED DO SOMETHING');} }>
         <View style={styles.itemContainer}>
-          <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
-          <View style={styles.textContainer}>
-            <Text key={item.id} style={styles.resultText}>{item.title}</Text>
+          <View style={styles.row}>
+            <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
+            <View style={styles.rightContainer}>
+              <Text key={item.id} style={styles.resultText}>{item.title}</Text>
+            </View>
           </View>
+          <View style={styles.bottomContainer}>
+            <Text key={item.id} style={styles.info}>Author: /u/{item.author}    Upvotes: {item.ups}</Text>
+         </View>
         </View>
       </TouchableHighlight>
     )
@@ -58,21 +61,30 @@ class PostFeed extends Component {
 
 const styles = StyleSheet.create({
   itemContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: '#d6d7da',
     padding: 10,
+  },
+  row: {
+    flexDirection: 'row'
   },
   item: {
     padding: 10,
     fontSize: 18,
     height: 44,
   },
-  textContainer: {
+  rightContainer: {
     flex: 2,
     margin:10,
     height: 100,
+  },
+  bottomContainer: {
+
+  },
+  info: {
+    textAlign: 'center'
   },
   resultText: {
     color: '#000',

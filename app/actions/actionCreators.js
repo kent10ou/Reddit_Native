@@ -9,7 +9,6 @@ function requestPosts () {
 }
 
 function receivePosts (json) {
-  // console.log('receivedPosts! ', json);
   return {
     type: RECEIVE_POSTS,
     posts: json.data.children.map(child => child.data)
@@ -18,7 +17,6 @@ function receivePosts (json) {
 
 // thunk action creator
 function fetchPosts () {
-  // console.log("fetchPosts Action Hit!");
   return dispatch => {
     dispatch(requestPosts())
     return fetch(`https://reddit.com/.json`)
@@ -52,6 +50,7 @@ export function fetchPostsIfNeeded () {
   }
 }
 
+// actions to change navigation
 function jumpPage () {
   console.log('hit JUMPPAGE');
   return {
