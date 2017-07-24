@@ -7,20 +7,13 @@ import configureStore from './app/store/configureStore';
 import Routes from './app/config/routes';
 
 
-const AppNavigator = StackNavigator(Routes, {
-    // navigationOptions: {
-    //     title: ({ state }) => {
-    //         if (state.params) {
-    //             return `${state.params.title}`;
-    //         }
-    //     }
-    // }
-});
+const AppNavigator = StackNavigator(Routes, {});
 
 const navReducer = (state, action) => {
-    console.log('nav reducer state: ', state)
-    console.log('nav reducer action: ', action)
-    const newState = AppNavigator.router.getStateForAction(action, state);
+    // console.log('navReducer - state: ', state);
+    // console.log('navReducer - action: ', action);
+    const newState = AppNavigator.router.getStateForAction(action.type, state);
+    // console.log('NEW_STATE HIT: ', newState)
     return newState || state;
 };
 
@@ -30,7 +23,7 @@ const navReducer = (state, action) => {
 
 class AppWithNavigationState extends Component {
     render() {
-    console.log('props from app start: ', this.props);
+    // console.log('props from app start: ', this.props);
         return (
             <AppNavigator
                 navigation={addNavigationHelpers({

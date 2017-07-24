@@ -1,4 +1,4 @@
-import { REQUEST_POSTS, RECEIVE_POSTS, ADD_COUNT } from '../actions/actionCreators';
+import { REQUEST_POSTS, RECEIVE_POSTS } from '../actions/actionCreators';
 
 const initialState = {
   isFetching: false,

@@ -15,26 +15,30 @@ import PostDetail from './PostDetail';
 
 class PostFeed extends Component {
   
+  _keyExtractor = (item, index) => item.id;
+  
   _goToPostDetails = (state) => {
-    // this.props.navigation.navigate('PostDetail', { ...state });
-    console.log('THIS.PROPS: ', this.props)
+    // this.props.nav.navigate('PostDetail', { ...state });
+    // console.log('THIS.PROPS: ', this.props)
     return this.props.actions.goToPostDetail();
   };
   
-  _keyExtractor = (item, index) => item.id;
+  _pullToRefresh = (state) => {
+    console.log('PullTORefresh STATE: ', state);
+    console.log('PULL TO REFRESH PROPS: ', this.props);
+    this.props.actions.fetchPostsIfNeeded();
+  }
 
   _renderFlatListItem = ({item}) => {
-    
-    // console.log('ITEM: ', {item});
     return (
-        <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(); console.log('PRESSED DO SOMETHING');} }>
-          <View style={styles.itemContainer}>
-            <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
-            <View style={styles.textContainer}>
-              <Text key={item.id} style={styles.resultText}>{item.title}</Text>
-            </View>
+      <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(); console.log('PRESSED DO SOMETHING');} }>
+        <View style={styles.itemContainer}>
+          <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
+          <View style={styles.textContainer}>
+            <Text key={item.id} style={styles.resultText}>{item.title}</Text>
           </View>
-        </TouchableHighlight>
+        </View>
+      </TouchableHighlight>
     )
   }
 
@@ -44,7 +48,9 @@ class PostFeed extends Component {
       <FlatList
           data={this.props.posts} // looks like this: { posts: [{},{},...]}
           renderItem= {this._renderFlatListItem}
-          keyExtractor={this._keyExtractor}> 
+          keyExtractor={this._keyExtractor}
+          onRefresh={ () => {this._pullToRefresh()} }
+          refreshing={this.props.isFetching}> 
       </FlatList>
     )
   }

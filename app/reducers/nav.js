@@ -1,5 +1,6 @@
 import { NavigationActions } from 'react-navigation';
 import { RedditRouter } from '../router/Router';
+import { POST_DETAIL } from '../actions/actionCreators';
 
 const initialNavState = RedditRouter.router.getStateForAction('RedditNative');
 
@@ -12,9 +13,9 @@ function nav(state = initialNavState, action) {
         state
       );
       break;
-    case 'Logout':
+    case POST_DETAIL:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Login' }),
+        NavigationActions.navigate({ routeName: 'PostDetail' }),
         state
       );
       break;

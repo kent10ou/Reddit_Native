@@ -1,6 +1,6 @@
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const ADD_COUNT = 'ADD_COUNT';
+export const POST_DETAIL = 'POST_DETAIL';
 
 function requestPosts () {
   return {
@@ -9,7 +9,7 @@ function requestPosts () {
 }
 
 function receivePosts (json) {
-  console.log('receivedPosts! ', json);
+  // console.log('receivedPosts! ', json);
   return {
     type: RECEIVE_POSTS,
     posts: json.data.children.map(child => child.data)
@@ -18,7 +18,7 @@ function receivePosts (json) {
 
 // thunk action creator
 function fetchPosts () {
-  console.log("fetchPosts Action Hit!");
+  // console.log("fetchPosts Action Hit!");
   return dispatch => {
     dispatch(requestPosts())
     return fetch(`https://reddit.com/.json`)
@@ -29,11 +29,11 @@ function fetchPosts () {
 }
 
 function shouldFetchPosts (state) {
-  const posts = state.posts.items;
-  // console.log('shouldFetchPosts: ', posts);
-  if (posts.length === 0) {
+  const isFetching = state.posts.isFetching;
+  console.log('shouldFetchPosts: ', isFetching)
+  if (!isFetching) {
     return true;
-  } else if (posts.isFetching) {
+  } else if (isFetching) {
     return false;
   } else {
     return posts.didRefresh;
@@ -43,7 +43,7 @@ function shouldFetchPosts (state) {
 export function fetchPostsIfNeeded () {
   return (dispatch, getState) => {
     const state = getState();
-    // console.log("fetchPostsIfNeeded ", state);
+    console.log("fetchPostsIfNeeded ", state);
     if ( shouldFetchPosts(state) ) {
       return dispatch(fetchPosts());
     } else {
@@ -52,20 +52,19 @@ export function fetchPostsIfNeeded () {
   }
 }
 
+function jumpPage () {
+  console.log('hit JUMPPAGE');
+  return {
+    type: POST_DETAIL
+  }
+}
+
 export function goToPostDetail () {
   return (dispatch, getState) => {
     const state = getState();
     console.log('goToPostDetail Action Hit! :', state);
-    
+    dispatch(jumpPage());
   }
 }
 
-export function addCount(count) {
-  // console.log('addCount hit');
-  return (dispatch) => { 
-    dispatch({
-      type: 'ADD_COUNT',
-      count
-    })
-  }
-}
+

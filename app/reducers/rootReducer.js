@@ -4,6 +4,7 @@ import posts from './posts';
 
 // Combine Reducers
 export default function rootReducer(navReducer) {
+  console.log('ROOT_REDUCER: ', navReducer);
   return combineReducers({
     // reducer functions
     nav: navReducer,
