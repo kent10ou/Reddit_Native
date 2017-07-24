@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
+import nav from './nav';
 import posts from './posts';
-import count from './count';
+
 // Combine Reducers
 const rootReducer = combineReducers({
   // reducer functions
-  posts,
-  count
+  nav,
+  posts
 })
 
 export default rootReducer;

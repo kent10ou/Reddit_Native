@@ -1,10 +1,11 @@
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import { connect } from 'react-redux';
+import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
-import RedditNative from '../containers/RedditNative';
+import RedditNative from '../components/RedditNative';
 import PostDetail from '../components/PostDetail';
 
-const PostStack = StackNavigator({
+export const RedditRouter = StackNavigator({
   PostFeed: {
     screen: RedditNative,
     navigationOptions: {
@@ -16,10 +17,15 @@ const PostStack = StackNavigator({
     navigationOptions: {
       title: 'Post Details'
     }
-    // navigationOptions: ({ navigation }) => ({
-    //   title: `${navigation.state.params.name.first.toUpperCase()} ${navigation.state.params.name.last.toUpperCase()}`,
-    // }),
   },
 });
 
-export default PostStack;
+const RedditRouterWithNavState = ({ dispatch, nav }) => (
+  <RedditRouter navigation={addNavigationHelpers({ dispatch, state: nav })} />
+);
+
+const mapStateToProps = state => ({
+  nav: state.nav,
+});
+
+export default connect(mapStateToProps)(RedditRouterWithNavState);

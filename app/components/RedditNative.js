@@ -9,7 +9,7 @@ import {
   StyleSheet,
   TouchableHighlight 
 } from 'react-native';
-import PostFeed from '../components/PostFeed';
+import PostFeed from './PostFeed';
 import * as actionCreators from '../actions/actionCreators';
 import { fetchPostsIfNeeded, addCount } from '../actions/actionCreators';
 // import action from '../actions/actionCreators.js'
@@ -22,20 +22,21 @@ class RedditNative extends Component {
 
   // when component mounts
   componentDidMount() {
+    // console.log('CDM > props: ', this.props)
     this.props.actions.fetchPostsIfNeeded()
   }
   
   render() {
-    const { posts, isFetching } = this.props
+    const { posts, isFetching, navigation } = this.props
     // console.log('RN-state: ', this.state);
-    // console.log('RN-props: ', this.props);
+    console.log('RN-props: ', this.props);
     return (
       <View style={styles.mainContainer}>
         {isFetching && posts.length === 0 && <Text>Loading...</Text> }
         {!isFetching && posts.length === 0 && <Text>Empty.</Text> }
         {posts.length > 0 &&
           <View>
-            <PostFeed posts={posts} />
+            <PostFeed posts={posts} navigation={navigation} />
             <Text>"SHOW ME THE MONEY"</Text>
           </View>
         }
@@ -55,7 +56,7 @@ function mapStateToProps(state) {
   return {
     posts: state.posts.items,
     isFetching: state.posts.isFetching,
-    count: state.count.count
+    navigation: state.posts.navigation
   }
 }
 
@@ -77,3 +78,14 @@ RedditNative.propTypes = {
 // and will surface those data and funcs via props
 
 export default connect(mapStateToProps, mapDispatchToProps)(RedditNative);
+
+// const AppWithNavigationState = ({ dispatch, nav }) => (
+//   <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
+// );
+
+
+// const mapStateToProps = state => ({
+//   nav: state.nav,
+// });
+
+// export default connect(mapStateToProps)(AppWithNavigationState);

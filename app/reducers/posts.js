@@ -8,7 +8,7 @@ const initialState = {
 // pass in default state to posts reducer
 function posts (state = initialState, action) {
   switch (action.type) {
-    
+
     case REQUEST_POSTS:
       // console.log("REDUCER, REQ_POST: ", state);
       return {
@@ -25,7 +25,7 @@ function posts (state = initialState, action) {
       }
 
     default: 
-      console.log("REDUCER, DEFAULT: ", state);
+      // console.log("REDUCER, DEFAULT: ", state);
       return state;
   }
 }

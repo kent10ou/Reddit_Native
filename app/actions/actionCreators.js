@@ -52,6 +52,8 @@ export function fetchPostsIfNeeded () {
   }
 }
 
+
+
 export function addCount(count) {
   // console.log('addCount hit');
   return (dispatch) => { 
