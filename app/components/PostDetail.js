@@ -19,7 +19,7 @@ class PostDetail extends Component {
         <View style={{flex: 0, flexDirection: 'row'}}>
       { item.preview ?  
           <Image 
-            resizeMode='cover'
+            resizeMode='contain'
             style={{flex: 1, width:null, height: 290}}
             source={{ uri: item.url }} />
       : <Text key={item.id} style={{flex: 1, textAlign: 'center', height: 30, marginTop: 100}}>No Image</Text> }
