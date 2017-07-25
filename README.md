@@ -15,7 +15,7 @@ iOS Reddit app using React Native and Reddit's API
 - [X] Use Redux
 - [X] Create a main screen that fetches from Reddit’s API (https://www.reddit.com/.json) and displays the basic content (author, title, thumbnail, up votes, etc) in a list
 - [X] Users should be able to pull to refresh the list
-- [ ] Clicking on a specific item should transition to a different screen within the app. This screen's content can simply display the same basic content. Users should be able to go back to the main screen (React Navigation is a good option for this)
+- [X] Clicking on a specific item should transition to a different screen within the app. This screen's content can simply display the same basic content. Users should be able to go back to the main screen (React Navigation is a good option for this)
 - [X] Create a public Github repo for this project with instructions on how to get the app running and send me the link after you're done
 
 -----
