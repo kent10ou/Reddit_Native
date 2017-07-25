@@ -1,3 +1,7 @@
+/*
+// not currently being used
+
+
 import { NavigationActions } from 'react-navigation';
 
 const initialState = {
@@ -16,6 +20,6 @@ function item(state = initialState, action) {
     default:
       return state;
   }
-  // Simply return the original `state` if `nextState` is null or undefined.
 }
 
+*/

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   View,
-  List,
   FlatList,
   StyleSheet,
   Text,
@@ -22,6 +22,7 @@ class PostFeed extends Component {
     // need to pass state when dispatching action
     // return this.props.actions.goToPostDetail();
     this.props.props.navigation.navigate('PostDetail', item);
+    
   };
   
   _pullToRefresh = () => {
@@ -102,4 +103,13 @@ const styles = StyleSheet.create({
   }
 })
 
-export default PostFeed;
+function mapStateToProps(state) {
+  console.log('mapStateToProps POSTDETAIL - state: ', state)
+  return {
+    posts: state.posts.items,
+    isFetching: state.posts.isFetching,
+    nav: state.nav
+  }
+}
+export default connect(mapStateToProps)(PostFeed);
+// export default PostFeed;

@@ -4,25 +4,27 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import {
   View,
-  List,
-  FlatList,
   StyleSheet,
   Text,
   Image,
-  TouchableHighlight
 } from 'react-native';
 
 class PostDetail extends Component {
   render() {
     console.log('inside PostDetail page - props: ', this.props);
-
+    const item = this.props.navigation.state.params;
+    console.log('item: ', item);
     return (
       <View style={styles.container}>
-        {/* <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
-        <View style={styles.rightContainer}>
-          <Text key={item.id} style={styles.resultText}>{item.title}</Text>
-        </View> */}
-        <Text>TESTING</Text>
+        <View>
+          <Image source={{ uri: item.thumbnail }} style={styles.resultImage} />
+          <View>
+            <Text key={item.id} style={styles.resultText}>{item.title}</Text>
+          </View>
+        </View>
+        <View>
+          <Text key={item.id} style={styles.info}>Author: /u/{item.author}    Upvotes: {item.ups}</Text>
+        </View> 
       </View>
     );
   }
@@ -34,11 +36,14 @@ const styles = StyleSheet.create({
   },
   resultImage: {
     flex: 1,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
+    height: 100,
+    width: 100
   },
   resultText: {
     flex: 2,
-    textAlign: 'center'
+    textAlign: 'center',
+    height: 100,
   }
 });
 

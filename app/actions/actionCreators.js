@@ -58,15 +58,6 @@ function jumpPage () {
   }
 }
 
-/*
-function passDetails () {
-  return {
-    type: 'SEND_DETAILS'
-    // item: state
-  }
-}
-*/
-
 export function goToPostDetail () {
   return (dispatch, getState) => {
     const state = getState();
