@@ -46,8 +46,9 @@ const styles = StyleSheet.create({
 
   },
   center: {
+    marginTop: 100,
     textAlignVertical: "center",
-    textAlign: "center"
+    textAlign: "center",
   }
 })
 

@@ -11,19 +11,21 @@ import {
 
 class PostDetail extends Component {
   render() {
-    console.log('inside PostDetail page - props: ', this.props);
     const item = this.props.navigation.state.params;
-    // console.log('thumbnail: ', typeof item.thumbnail);
+    console.log('inside PostDetail page - props: ', item);
+    console.log('thumbnail: ', item.url);
     return (
       <View style={{flexDirection: 'column'}}>
         <View style={{flex: 0, flexDirection: 'row'}}>
+      { item.preview ?  
           <Image 
             resizeMode='cover'
             style={{flex: 1, width:null, height: 290}}
-            source={{ uri: item.preview.images[0].source.url }} />
+            source={{ uri: item.url }} />
+      : <Text key={item.id} style={{flex: 1, textAlign: 'center', height: 30, marginTop: 100}}>No Image</Text> }
         </View>
         <View>
-          <Text key={item.id} style={{textAlign: 'center', height: 30}}>Author: /u/{item.author}    Upvotes: {item.ups}</Text>
+          <Text key={item.id} style={{textAlign: 'center', height: 30, marginTop: 30}}>Author: /u/{item.author}    Upvotes: {item.ups}</Text>
         </View> 
         <View>
           <Text key={item.id} style={{textAlign: 'center', height: 100}}>{item.title}</Text>

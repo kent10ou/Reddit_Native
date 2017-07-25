@@ -33,7 +33,10 @@ class PostFeed extends Component {
     const { posts, isFetching, nav, actions, itemIndex } = this.props
 
     return (
-      <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(item)} }>
+      <TouchableHighlight 
+        underlayColor={'#d6d7da'}
+        activeOpacity={0.5}
+        onPress={ () => {this._goToPostDetails(item)} }>
         <View style={styles.itemContainer}>
           <View style={styles.row}>
             <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
