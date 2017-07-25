@@ -14,16 +14,18 @@ const initialState = AppNavigator.router.getActionForPathAndParams('RedditNative
 const navReducer = (state = initialState, action) => {
   // const newState = AppNavigator.router.getStateForAction(action, state);
   // console.log('NEW_STATE HIT: ', newState)
+  console.log("INITIALSTATE: ", initialState);
   let newState;
   switch(action.type) {
     case 'POST_DETAIL':
       console.log('before setting newState: ', state);
-      newState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'PostDetail' }, {posts: state.posts}), 
-      state);
-      console.log('POST_DETAIL HIT: ', newState);
+      newState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'PostDetail' }), state);
+      console.log('POST_DETAIL Reducer - newState: ', newState);
       break;
     default: 
       newState = AppNavigator.router.getStateForAction(action,state);
+      console.log('default - newState: ', newState);
+      // return state
   }
   return newState || state;
 };

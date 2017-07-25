@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-// import nav from './nav';
+import item from './item';
 import posts from './posts';
 
 // Combine Reducers
@@ -8,7 +8,8 @@ export default function rootReducer(navReducer) {
   return combineReducers({
     // reducer functions
     nav: navReducer,
-    posts: posts
+    posts: posts,
+    // item: item
   })
 };
 

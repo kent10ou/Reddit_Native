@@ -2,7 +2,8 @@ import { REQUEST_POSTS, RECEIVE_POSTS } from '../actions/actionCreators';
 
 const initialState = {
   isFetching: false,
-  items: []
+  items: [],
+  itemIndex: {}
 }
 
 // pass in default state to posts reducer

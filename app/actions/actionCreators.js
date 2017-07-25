@@ -54,15 +54,25 @@ export function fetchPostsIfNeeded () {
 function jumpPage () {
   // console.log('hit JUMPPAGE');
   return {
-    type: POST_DETAIL
+    type: POST_DETAIL,
   }
 }
+
+/*
+function passDetails () {
+  return {
+    type: 'SEND_DETAILS'
+    // item: state
+  }
+}
+*/
 
 export function goToPostDetail () {
   return (dispatch, getState) => {
     const state = getState();
-    // console.log('goToPostDetail Action Hit! :', state);
+    // console.log('gotopostdetail action - state: ', state);
     dispatch(jumpPage());
+    // dispatch(passDetails(state));
   }
 }
 

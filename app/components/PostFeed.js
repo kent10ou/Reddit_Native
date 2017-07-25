@@ -18,9 +18,10 @@ class PostFeed extends Component {
   _keyExtractor = (item, index) => {
     return item.id;
   }
-  _goToPostDetails = () => {
+  _goToPostDetails = (item) => {
     // need to pass state when dispatching action
-    return this.props.actions.goToPostDetail();
+    // return this.props.actions.goToPostDetail();
+    this.props.props.navigation.navigate('PostDetail', item);
   };
   
   _pullToRefresh = () => {
@@ -28,10 +29,10 @@ class PostFeed extends Component {
   }
 
   _renderFlatListItem = ({item}) => {
-    const { posts, isFetching, nav, actions } = this.props
+    const { posts, isFetching, nav, actions, itemIndex } = this.props
 
     return (
-      <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(); console.log('item: ', item)} }>
+      <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(item); console.log('CLICKED, this.props: ', this.props)} }>
         <View style={styles.itemContainer}>
           <View style={styles.row}>
             <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />

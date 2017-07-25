@@ -27,16 +27,16 @@ class RedditNative extends Component {
   }
   
   render() {
-    const { posts, isFetching, nav, actions } = this.props
+    const { posts, isFetching, nav, actions, itemIndex } = this.props
     // console.log('RN-state: ', this.state);
-    // console.log('RN-props: ', this.props);
+    console.log('RN-props: ', this.props);
     return (
       <View style={styles.mainContainer}>
         {isFetching && posts.length === 0 && <Text style={styles.center}>Loading...</Text> }
         {!isFetching && posts.length === 0 && <Text style={styles.center}>Empty.</Text> }
         {posts.length > 0 &&
           <View>
-            <PostFeed posts={posts} nav={nav} actions={actions} isFetching={isFetching} />
+            <PostFeed posts={posts} nav={nav} actions={actions} isFetching={isFetching} props={this.props} />
           </View>
         }
       </View>
@@ -55,11 +55,12 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state) {
-  // console.log('mapStateToProps - state: ', state)
+  console.log('mapStateToProps - state: ', state)
   return {
     posts: state.posts.items,
     isFetching: state.posts.isFetching,
-    nav: state.nav
+    nav: state.nav,
+    itemIndex: state.posts.itemIndex
   }
 }
 

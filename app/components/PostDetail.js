@@ -15,6 +15,7 @@ import {
 class PostDetail extends Component {
   render() {
     console.log('inside PostDetail page - props: ', this.props);
+
     return (
       <View style={styles.container}>
         {/* <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
@@ -46,8 +47,7 @@ function mapStateToProps(state) {
   return {
     posts: state.posts.items,
     isFetching: state.posts.isFetching,
-    nav: state.nav,
-
+    nav: state.nav
   }
 }
 
