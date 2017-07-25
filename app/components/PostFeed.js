@@ -33,7 +33,7 @@ class PostFeed extends Component {
     const { posts, isFetching, nav, actions, itemIndex } = this.props
 
     return (
-      <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(item); console.log('CLICKED, this.props: ', this.props)} }>
+      <TouchableHighlight underlayColor={'#d6d7da'} activeOpacity={0.5} onPress={ () => {this._goToPostDetails(item)} }>
         <View style={styles.itemContainer}>
           <View style={styles.row}>
             <Image source={ {uri: item.thumbnail} } style={styles.resultImage} />
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state) {
-  console.log('mapStateToProps POSTDETAIL - state: ', state)
+  // console.log('mapStateToProps POSTDETAIL - state: ', state)
   return {
     posts: state.posts.items,
     isFetching: state.posts.isFetching,

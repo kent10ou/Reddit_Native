@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 import { 
   View, 
   Text, 
-  ListView, 
   StyleSheet,
-  TouchableHighlight 
 } from 'react-native';
 import PostFeed from './PostFeed';
 import * as actionCreators from '../actions/actionCreators';

@@ -13,32 +13,34 @@ class PostDetail extends Component {
   render() {
     console.log('inside PostDetail page - props: ', this.props);
     const item = this.props.navigation.state.params;
-    console.log('item: ', item);
+    // console.log('thumbnail: ', typeof item.thumbnail);
     return (
-      <View style={styles.container}>
-        <View>
-          <Image source={{ uri: item.thumbnail }} style={styles.resultImage} />
-          <View>
-            <Text key={item.id} style={styles.resultText}>{item.title}</Text>
-          </View>
+      <View style={{flexDirection: 'column'}}>
+        <View style={{flex: 0, flexDirection: 'row'}}>
+          <Image 
+            resizeMode='cover'
+            style={{flex: 1, width:null, height: 290}}
+            source={{ uri: item.preview.images[0].source.url }} />
         </View>
         <View>
-          <Text key={item.id} style={styles.info}>Author: /u/{item.author}    Upvotes: {item.ups}</Text>
+          <Text key={item.id} style={{textAlign: 'center', height: 30}}>Author: /u/{item.author}    Upvotes: {item.ups}</Text>
         </View> 
+        <View>
+          <Text key={item.id} style={{textAlign: 'center', height: 100}}>{item.title}</Text>
+        </View>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+/* // StyleSheet is not loading...
+const detailStyles = StyleSheet.create({
   container: {
     flexDirection: 'column'
   },
-  resultImage: {
+  postImage: {
     flex: 1,
     resizeMode: 'contain',
-    height: 100,
-    width: 100
   },
   resultText: {
     flex: 2,
@@ -46,9 +48,9 @@ const styles = StyleSheet.create({
     height: 100,
   }
 });
-
+*/
 function mapStateToProps(state) {
-  console.log('mapStateToProps POSTDETAIL - state: ', state)
+  // console.log('mapStateToProps POSTDETAIL - state: ', state)
   return {
     posts: state.posts.items,
     isFetching: state.posts.isFetching,
