@@ -1,6 +1,5 @@
 # Reddit Native
-
-iOS Reddit app using React Native and Reddit's API
+> iOS Reddit app using React Native, Redux, Redux-Thunk, Redux-Navigation, & Reddit's API
 
 ## How to run the app
 
