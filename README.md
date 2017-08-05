@@ -1,6 +1,9 @@
 # Reddit Native
 > iOS Reddit app using React Native, Redux, Redux-Thunk, Redux-Navigation, & Reddit's API
 
+[Feed](http://i.imgur.com/Sm2Q9ON.png)
+[Post](http://i.imgur.com/EecLT0V.png)
+
 ## How to run the app
 
 - clone the app to local directory with `git clone https://github.com/kent10ou/Reddit_Native.git`
